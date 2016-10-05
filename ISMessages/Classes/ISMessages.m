@@ -26,6 +26,7 @@ static CGFloat const kDefaulInset = 8.f;
 // Position
 
 @property (assign, nonatomic) ISAlertPosition alertPosition;
+@property (assign, nonatomic) ISAlertType usedType;
 
 // Duration
 
@@ -168,10 +169,14 @@ static NSMutableArray* currentAlertArray = nil;
     UIView* alertView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, self.view.frame.size.width, self.view.frame.size.height)];
     alertView.backgroundColor = _alertViewBackgroundColor;
     [self.view addSubview:alertView];
-    
+	
     UIImageView* iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(kDefaulInset, (_alertViewHeight - _iconImageSize.height) / 2.f, _iconImageSize.width, _iconImageSize.height)];
     iconImage.contentMode = UIViewContentModeScaleAspectFit;
     iconImage.image = _iconImage;
+	if( _usedType == ISAlertTypeCustom ) {
+		iconImage.clipsToBounds = true;
+		iconImage.layer.cornerRadius = ceilf(iconImage.bounds.size.width/2);
+	}
     [alertView addSubview:iconImage];
     
     UILabel* titleLabel = [UILabel new];
@@ -391,7 +396,7 @@ static NSMutableArray* currentAlertArray = nil;
 }
 
 - (void)configureViewForAlertType:(ISAlertType)alertType iconImage:(UIImage*)iconImage {
-    
+	_usedType = alertType;
     self.titleLabelTextColor = [UIColor whiteColor];
     self.messageLabelTextColor = [UIColor whiteColor];
     self.titleLabelFont = [UIFont systemFontOfSize:15.f weight:UIFontWeightMedium];
@@ -429,7 +434,9 @@ static NSMutableArray* currentAlertArray = nil;
             break;
         }
         case ISAlertTypeCustom: {
-            self.alertViewBackgroundColor = [UIColor colorWithRed:96.f/255.f green:184.f/255.f blue:237.f/255.f alpha:1.f];
+            self.alertViewBackgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1.f];
+			self.titleLabelTextColor = [UIColor blackColor];
+			self.messageLabelTextColor = [UIColor blackColor];
             if (!_iconImage) {
                 self.iconImage = [self imageNamed:@"isInfoIcon"];
             }
