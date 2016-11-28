@@ -21,7 +21,10 @@ typedef NS_ENUM(NSInteger, ISAlertType) {
     // Light green alert with info image.
     ISAlertTypeInfo = 3,
     // Custom alert, default - info image and light blue background color
-    ISAlertTypeCustom = 4
+    ISAlertTypeCustom = 4,
+	
+	ISAlertTypeMessageWhite = 5,
+	ISAlertTypeMessageBlack = 6
 };
 
 typedef NS_ENUM(NSInteger, ISAlertPosition) {

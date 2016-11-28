@@ -173,7 +173,7 @@ static NSMutableArray* currentAlertArray = nil;
     UIImageView* iconImage = [[UIImageView alloc] initWithFrame:CGRectMake(kDefaulInset, (_alertViewHeight - _iconImageSize.height) / 2.f, _iconImageSize.width, _iconImageSize.height)];
     iconImage.contentMode = UIViewContentModeScaleAspectFit;
     iconImage.image = _iconImage;
-	if( _usedType == ISAlertTypeCustom ) {
+	if( _usedType == ISAlertTypeMessageBlack || _usedType == ISAlertTypeMessageWhite ) {
 		iconImage.clipsToBounds = true;
 		iconImage.layer.cornerRadius = ceilf(iconImage.bounds.size.width/2);
 	}
@@ -442,6 +442,25 @@ static NSMutableArray* currentAlertArray = nil;
             }
             break;
         }
+		case ISAlertTypeMessageBlack: {
+			//CGFloat rgbValue = 0.0f;
+			self.alertViewBackgroundColor = [UIColor colorWithRed:75.f/255.f green:107.f/255.f blue:122.f/255.f alpha:1.f];
+			self.titleLabelTextColor = [UIColor whiteColor];
+			self.messageLabelTextColor = [UIColor whiteColor];
+			if (!_iconImage) {
+				self.iconImage = [self imageNamed:@"isInfoIcon"];
+			}
+			break;
+		}
+		case ISAlertTypeMessageWhite: {
+			self.alertViewBackgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1.f];
+			self.titleLabelTextColor = [UIColor blackColor];
+			self.messageLabelTextColor = [UIColor blackColor];
+			if (!_iconImage) {
+				self.iconImage = [self imageNamed:@"isInfoIcon"];
+			}
+			break;
+		}
         default:
             break;
     }
