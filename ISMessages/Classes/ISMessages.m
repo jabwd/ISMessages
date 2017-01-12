@@ -413,7 +413,7 @@ static NSMutableArray* currentAlertArray = nil;
             break;
         }
         case ISAlertTypeError: {
-            self.alertViewBackgroundColor = [UIColor colorWithRed:255.f/255.f green:91.f/255.f blue:65.f/255.f alpha:1.f];
+            self.alertViewBackgroundColor = [UIColor colorWithRed:205.f/255.f green:1.5f/255.f blue:1.f/255.f alpha:1.f];
             if (!_iconImage) {
                 self.iconImage = [self imageNamed:@"isErrorIcon"];
             }
