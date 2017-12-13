@@ -406,7 +406,8 @@ static NSMutableArray* currentAlertArray = nil;
     
     switch (alertType) {
         case ISAlertTypeSuccess: {
-            self.alertViewBackgroundColor = [UIColor colorWithRed:31.f/255.f green:177.f/255.f blue:138.f/255.f alpha:1.f];
+            //self.alertViewBackgroundColor = [UIColor colorWithRed:31.f/255.f green:177.f/255.f blue:138.f/255.f alpha:1.f];
+			self.alertViewBackgroundColor = [UIColor colorWithRed:100.f/255.f green:200.f/255.f blue:220.f/255.f alpha:1.f];
             if (!_iconImage) {
                 self.iconImage = [self imageNamed:@"isSuccessIcon"];
             }
